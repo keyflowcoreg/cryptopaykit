@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@/components/Analytics'
 import { CookieBanner } from '@/components/CookieBanner'
+import { AnnouncementBar } from '@/components/AnnouncementBar'
+import { NoiseOverlay } from '@/components/NoiseOverlay'
 import MobileNav from './components/MobileNav'
 import './globals.css'
 
@@ -9,14 +11,17 @@ export const metadata: Metadata = {
   description: 'The definitive developer toolkit for accepting crypto payments via x402 protocol. Code templates, integration guides, middleware, and a live playground.',
   keywords: ['x402', 'crypto payments', 'USDC', 'Base', 'developer toolkit', 'payment middleware'],
   openGraph: {
-    title: 'CryptoPayKit — Accept crypto payments in 5 minutes. Not 5 weeks.',
-    description: 'Copy-paste. Deploy. Get paid. 15 code templates, 4 guides, live playground. $49 one-time.',
+    title: 'CryptoPayKit — x402 Developer Toolkit',
+    description: 'Accept USDC crypto payments in Next.js with 5 lines of code',
     type: 'website',
+    siteName: 'CryptoPayKit',
+    images: [{ url: '/api/og', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CryptoPayKit — Accept Crypto in 5 Minutes',
-    description: '15 code templates + 4 guides + live playground. $49 USDC one-time.',
+    title: 'CryptoPayKit — x402 Developer Toolkit',
+    description: 'Accept USDC crypto payments in Next.js with 5 lines of code',
+    images: ['/api/og'],
   },
   robots: {
     index: true,
@@ -53,6 +58,8 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen">
+        <NoiseOverlay />
+        <AnnouncementBar items={['LAUNCH WEEK \u2014 Limited time pricing', '15 x402 templates + live playground \u2014 $49 one-time']} />
         <Analytics product="cryptopaykit" />
         <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-700 bg-zinc-950/80 backdrop-blur-xl">
           <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
