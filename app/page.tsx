@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import TypewriterCode from './components/TypewriterCode'
 import PaymentFlowAnimation from './components/PaymentFlowAnimation'
-import { PaymentOptions } from '@/components/stripe/PaymentOptions'
+import { PayNow } from '@/components/paynow'
 
 const heroCodeLines = [
   'import { withX402 } from "x402-next"',
@@ -310,13 +310,11 @@ export default function LandingPage() {
           >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-0">
               <div className="w-full sm:w-80">
-                <PaymentOptions
+                <PayNow
                   productName="CryptoPayKit"
                   price={49}
-                  description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
-                  x402Endpoint="/api/kit"
-                  successUrl="/success"
-                  onX402Success={() => router.push('/success')}
+                  description="15 templates, 4 guides, live playground. Commercial license."
+                  onSuccess={() => router.push('/success')}
                   accentColor="#f59e0b"
                 />
               </div>
@@ -612,13 +610,11 @@ export default function LandingPage() {
                   </li>
                 </ul>
                 <div className="mt-6">
-                  <PaymentOptions
+                  <PayNow
                     productName="CryptoPayKit"
                     price={49}
-                    description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
-                    x402Endpoint="/api/kit"
-                    successUrl="/success"
-                    onX402Success={() => router.push('/success')}
+                    description="15 templates, 4 guides, live playground. Commercial license."
+                    onSuccess={() => router.push('/success')}
                     accentColor="#f59e0b"
                   />
                 </div>
@@ -680,13 +676,11 @@ export default function LandingPage() {
             <div className="flex flex-col items-center gap-4">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-0">
                 <div className="w-full sm:w-80">
-                  <PaymentOptions
+                  <PayNow
                     productName="CryptoPayKit"
                     price={49}
-                    description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
-                    x402Endpoint="/api/kit"
-                    successUrl="/success"
-                    onX402Success={() => router.push('/success')}
+                    description="15 templates, 4 guides, live playground. Commercial license."
+                    onSuccess={() => router.push('/success')}
                     accentColor="#f59e0b"
                   />
                 </div>
