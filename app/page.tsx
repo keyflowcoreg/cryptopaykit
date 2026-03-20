@@ -205,6 +205,10 @@ export default function LandingPage() {
       {/* -- Hero -- */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(245,158,11,0.08)_0%,_transparent_50%)]" />
+        {/* Diagonal stripe pattern */}
+        <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{
+          backgroundImage: `repeating-linear-gradient(45deg, rgba(245,158,11,0.4) 0px, rgba(245,158,11,0.4) 1px, transparent 1px, transparent 30px)`,
+        }} />
         <div className="max-w-6xl mx-auto px-4 pt-16 sm:pt-24 pb-16 sm:pb-20 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -336,7 +340,7 @@ export default function LandingPage() {
       </div>
 
       {/* -- Code Preview -- */}
-      <section className="py-12 sm:py-16 border-t border-zinc-700">
+      <section className="py-12 sm:py-16 border-t border-amber-500/15">
         <div className="max-w-3xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -420,7 +424,7 @@ export default function LandingPage() {
       </section>
 
       {/* -- Features -- */}
-      <section className="py-16 sm:py-20 border-t border-zinc-700">
+      <section className="py-16 sm:py-20 border-t border-amber-500/15">
         <div className="max-w-5xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -444,7 +448,7 @@ export default function LandingPage() {
       </section>
 
       {/* -- Payment Flow -- */}
-      <section className="py-16 sm:py-20 border-t border-zinc-700">
+      <section className="py-16 sm:py-20 border-t border-amber-500/15">
         <div className="max-w-3xl mx-auto px-4">
           <motion.div
             ref={flowRef}
@@ -468,7 +472,7 @@ export default function LandingPage() {
       </section>
 
       {/* -- What You Get -- */}
-      <section className="py-16 sm:py-20 border-t border-zinc-700">
+      <section className="py-16 sm:py-20 border-t border-amber-500/15">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -492,14 +496,14 @@ export default function LandingPage() {
       </section>
 
       {/* -- Countdown Timer -- */}
-      <section className="py-8 border-t border-zinc-700">
+      <section className="py-8 border-t border-amber-500/15">
         <div className="max-w-4xl mx-auto px-4">
           <CountdownTimer targetDate="2026-03-27T23:59:59" label="Launch pricing ends in" />
         </div>
       </section>
 
       {/* -- Pricing -- */}
-      <section id="pricing" className="py-16 sm:py-20 border-t border-zinc-700">
+      <section id="pricing" className="py-16 sm:py-20 border-t border-amber-500/15">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
             ref={pricingRef}
@@ -600,7 +604,7 @@ export default function LandingPage() {
       </section>
 
       {/* -- FAQ -- */}
-      <section className="py-16 sm:py-20 border-t border-zinc-700">
+      <section className="py-16 sm:py-20 border-t border-amber-500/15">
         <div className="max-w-3xl mx-auto px-4">
           <FAQAccordion
             heading="Frequently Asked Questions"
@@ -643,7 +647,7 @@ export default function LandingPage() {
       </section>
 
       {/* -- Final CTA -- */}
-      <section className="py-16 sm:py-24 border-t border-zinc-700 relative overflow-hidden">
+      <section className="py-16 sm:py-24 border-t border-amber-500/15 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(245,158,11,0.06)_0%,_transparent_60%)]" />
         <div className="max-w-2xl mx-auto px-4 text-center relative">
           <motion.div
@@ -693,7 +697,7 @@ export default function LandingPage() {
       </section>
 
       {/* -- Email Capture -- */}
-      <section className="py-16 sm:py-20 border-t border-zinc-700">
+      <section className="py-16 sm:py-20 border-t border-amber-500/15">
         <div className="max-w-xl mx-auto px-4">
           <EmailCapture
             heading="Get x402 integration tips"
@@ -705,7 +709,7 @@ export default function LandingPage() {
       </section>
 
       {/* -- Testimonials -- */}
-      <section className="py-16 sm:py-20 border-t border-zinc-700">
+      <section className="py-16 sm:py-20 border-t border-amber-500/15">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">What developers are saying</h2>

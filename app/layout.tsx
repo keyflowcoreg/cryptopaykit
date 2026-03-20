@@ -59,9 +59,9 @@ export default function RootLayout({
       </head>
       <body className="antialiased min-h-screen">
         <NoiseOverlay />
-        <AnnouncementBar items={['LAUNCH WEEK \u2014 Limited time pricing', '15 x402 templates + live playground \u2014 $49 one-time']} />
+        <AnnouncementBar items={['LAUNCH WEEK \u2014 Limited time pricing', '15 x402 templates + live playground \u2014 $49 one-time']} className="bg-amber-950/60 text-amber-300 border-b border-amber-500/20" />
         <Analytics product="cryptopaykit" />
-        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-700 bg-zinc-950/80 backdrop-blur-xl">
+        <nav className="sticky top-0 z-50 border-b border-zinc-700 bg-zinc-950/80 backdrop-blur-xl">
           <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="/" className="flex items-center gap-2">
               <span className="text-amber-500 font-bold text-lg">&gt;_</span>
@@ -83,7 +83,7 @@ export default function RootLayout({
             <MobileNav />
           </div>
         </nav>
-        <main className="pt-14">
+        <main>
           {children}
         </main>
         <footer className="border-t border-zinc-700 py-12 mt-20">
