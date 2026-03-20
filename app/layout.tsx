@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@/components/Analytics'
+import { CookieBanner } from '@/components/CookieBanner'
 import MobileNav from './components/MobileNav'
 import './globals.css'
 
@@ -96,9 +97,12 @@ export default function RootLayout({
             <div className="flex gap-4">
               <a href="/playground" className="hover:text-amber-500 transition-colors">Playground</a>
               <a href="/templates" className="hover:text-amber-500 transition-colors">Templates</a>
+              <a href="/privacy" className="hover:text-amber-500 transition-colors">Privacy</a>
+              <a href="/terms" className="hover:text-amber-500 transition-colors">Terms</a>
             </div>
           </div>
         </footer>
+        <CookieBanner />
       </body>
     </html>
   )

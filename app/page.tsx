@@ -1,11 +1,14 @@
 'use client'
 
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import TypewriterCode from './components/TypewriterCode'
 import PaymentFlowAnimation from './components/PaymentFlowAnimation'
 import { PayNow } from '@/components/paynow'
+import EmailCapture from '@/components/EmailCapture'
+import { FAQAccordion } from '@/components/FAQAccordion'
+import { SocialShare } from '@/components/SocialShare'
 
 const heroCodeLines = [
   'import { withX402 } from "x402-next"',
@@ -90,32 +93,6 @@ const packageContents = [
   { count: '~', label: 'Community Access', detail: 'Updates, new templates, peer support' },
 ]
 
-const faqItems = [
-  {
-    q: 'What is x402?',
-    a: 'x402 is a protocol that uses the HTTP 402 "Payment Required" status code to enable native crypto payments for web content and APIs. It lets any server require payment (USDC on Base) before serving a response.',
-  },
-  {
-    q: 'Why $49 one-time instead of subscription?',
-    a: 'Because we eat our own dog food. x402 is about direct payments, not recurring billing. You pay once via USDC, you get everything. No accounts, no logins, no renewal emails.',
-  },
-  {
-    q: 'Can I use these templates commercially?',
-    a: 'Yes. Full commercial license. Use them in client projects, SaaS products, side hustles, whatever. No attribution required.',
-  },
-  {
-    q: 'What if x402 protocol changes?',
-    a: 'Templates are updated when the protocol evolves. You get access to all future updates. The kit also teaches you the underlying protocol, so you can adapt independently.',
-  },
-  {
-    q: 'Do I need a crypto wallet?',
-    a: 'To buy this kit, yes -- you need a wallet with USDC on Base. To use the templates, your end users will need wallets too. That is the target market: crypto-native developers building for crypto-native users.',
-  },
-  {
-    q: 'Is there a refund policy?',
-    a: 'On-chain payments are final. That is why we offer a free playground and 3 free templates -- try before you buy.',
-  },
-]
 
 function FeatureCard({
   feature,
@@ -178,47 +155,6 @@ function Counter({ target, label }: { target: string; label: string }) {
   )
 }
 
-function FAQItem({ item, index }: { item: (typeof faqItems)[0]; index: number }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.1 }}
-      className="border border-zinc-700 rounded-lg overflow-hidden"
-    >
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-zinc-800/50 transition-colors"
-      >
-        <span className="text-sm text-zinc-200 flex items-center gap-3">
-          <span className="text-amber-500 font-mono text-xs">
-            {isOpen ? '[-]' : '[+]'}
-          </span>
-          {item.q}
-        </span>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="px-4 pb-4 text-sm text-zinc-400 leading-relaxed border-t border-zinc-700 pt-3 ml-7">
-              {item.a}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  )
-}
 
 function WhatYouGetCard({ item, index }: { item: (typeof packageContents)[0]; index: number }) {
   const ref = useRef(null)
@@ -366,6 +302,22 @@ export default function LandingPage() {
                 <span>{signal.label}</span>
               </div>
             ))}
+          </motion.div>
+
+          {/* Social Share */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.8 }}
+            className="flex flex-col items-center gap-2 mt-8"
+          >
+            <span className="text-xs text-zinc-400">Share with your network</span>
+            <SocialShare
+              url="https://cryptopaykit.vercel.app"
+              title="CryptoPayKit — Accept crypto payments in 5 minutes with x402"
+              description="One middleware. One line. USDC hits your wallet in 2 seconds. 15 templates, 4 guides, live playground."
+              hashtags={['x402', 'crypto', 'USDC', 'web3']}
+            />
           </motion.div>
         </div>
       </section>
@@ -629,25 +581,44 @@ export default function LandingPage() {
 
       {/* -- FAQ -- */}
       <section className="py-16 sm:py-20 border-t border-zinc-700">
-        <div className="max-w-2xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-10 sm:mb-12"
-          >
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
-              <span className="text-amber-500 font-mono">FAQ()</span>
-            </h2>
-            <p className="text-zinc-400 text-sm">
-              Frequently asked, concisely answered.
-            </p>
-          </motion.div>
-          <div className="space-y-2">
-            {faqItems.map((item, i) => (
-              <FAQItem key={i} item={item} index={i} />
-            ))}
-          </div>
+        <div className="max-w-3xl mx-auto px-4">
+          <FAQAccordion
+            heading="Frequently Asked Questions"
+            items={[
+              {
+                question: 'What is x402?',
+                answer: 'x402 is a protocol that uses the HTTP 402 "Payment Required" status code to enable native crypto payments for web content and APIs. It lets any server require payment (USDC on Base) before serving a response.',
+              },
+              {
+                question: 'How does USDC payment work on Base?',
+                answer: 'Base is an Ethereum L2 with ~2 second confirmations and near-zero gas fees. When a user hits your x402-protected endpoint, they pay USDC directly to your wallet on Base. No intermediary, no escrow -- instant settlement.',
+              },
+              {
+                question: 'Why $49 one-time instead of subscription?',
+                answer: 'Because we eat our own dog food. x402 is about direct payments, not recurring billing. You pay once via USDC, you get everything. No accounts, no logins, no renewal emails.',
+              },
+              {
+                question: 'What templates are included?',
+                answer: 'The kit includes 15 production-ready templates for Next.js, Express, Fastify, Cloudflare Workers, and Deno Deploy. Each template covers a different use case: API monetization, content gating, SaaS metering, micro-payments, and more.',
+              },
+              {
+                question: 'Can I use these templates commercially?',
+                answer: 'Yes. Full commercial license. Use them in client projects, SaaS products, side hustles, whatever. No attribution required.',
+              },
+              {
+                question: 'Do I need a crypto wallet?',
+                answer: 'To buy this kit, yes -- you need a wallet with USDC on Base. To use the templates, your end users will need wallets too. That is the target market: crypto-native developers building for crypto-native users.',
+              },
+              {
+                question: 'What if the x402 protocol changes?',
+                answer: 'Templates are updated when the protocol evolves. You get access to all future updates. The kit also teaches you the underlying protocol, so you can adapt independently.',
+              },
+              {
+                question: 'Is there a refund policy?',
+                answer: 'On-chain payments are final. That is why we offer a free playground and 3 free templates -- try before you buy.',
+              },
+            ]}
+          />
         </div>
       </section>
 
@@ -698,6 +669,18 @@ export default function LandingPage() {
               </span>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* -- Email Capture -- */}
+      <section className="py-16 sm:py-20 border-t border-zinc-700">
+        <div className="max-w-xl mx-auto px-4">
+          <EmailCapture
+            heading="Get x402 integration tips"
+            description="Weekly developer insights on crypto payments and Web3 monetization."
+            buttonText="Subscribe Free"
+            accent="amber"
+          />
         </div>
       </section>
 
