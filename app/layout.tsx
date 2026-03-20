@@ -1,0 +1,101 @@
+import type { Metadata } from 'next'
+import { Analytics } from '@/components/Analytics'
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'CryptoPayKit — Accept crypto payments in 5 minutes',
+  description: 'The definitive developer toolkit for accepting crypto payments via x402 protocol. Code templates, integration guides, middleware, and a live playground.',
+  keywords: ['x402', 'crypto payments', 'USDC', 'Base', 'developer toolkit', 'payment middleware'],
+  openGraph: {
+    title: 'CryptoPayKit — Accept crypto payments in 5 minutes. Not 5 weeks.',
+    description: 'Copy-paste. Deploy. Get paid. 15 code templates, 4 guides, live playground. $49 one-time.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CryptoPayKit — Accept Crypto in 5 Minutes',
+    description: '15 code templates + 4 guides + live playground. $49 USDC one-time.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "CryptoPayKit",
+              description:
+                "The definitive developer toolkit for accepting crypto payments via x402 protocol. 15 code templates, 4 integration guides, and a live playground.",
+              url: "https://cryptopaykit.com",
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Web",
+              offers: {
+                "@type": "Offer",
+                price: "49",
+                priceCurrency: "USD",
+                availability: "https://schema.org/InStock",
+              },
+            }),
+          }}
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased min-h-screen">
+        <Analytics product="cryptopaykit" />
+        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-surface-800 bg-surface-950/80 backdrop-blur-xl">
+          <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="/" className="flex items-center gap-2">
+              <span className="text-amber-500 font-bold text-lg">&gt;_</span>
+              <span className="font-bold text-white">CryptoPayKit</span>
+            </a>
+            <div className="flex items-center gap-6 text-sm">
+              <a href="/playground" className="text-neutral-400 hover:text-amber-500 transition-colors">
+                Playground
+              </a>
+              <a href="/templates" className="text-neutral-400 hover:text-amber-500 transition-colors">
+                Templates
+              </a>
+              <a href="/api/kit" className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-4 py-1.5 rounded-md transition-colors">
+                Buy Kit — $49
+              </a>
+            </div>
+          </div>
+        </nav>
+        <main className="pt-14">
+          {children}
+        </main>
+        <footer className="border-t border-surface-800 py-12 mt-20">
+          <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-500">
+            <div className="flex items-center gap-2">
+              <span className="text-amber-500">&gt;_</span>
+              <span>CryptoPayKit</span>
+            </div>
+            <p>Open source spirit, built by AI agents. No middlemen. No platform fees.</p>
+            <div className="flex gap-4">
+              <a href="/playground" className="hover:text-amber-500 transition-colors">Playground</a>
+              <a href="/templates" className="hover:text-amber-500 transition-colors">Templates</a>
+            </div>
+          </div>
+        </footer>
+      </body>
+    </html>
+  )
+}
