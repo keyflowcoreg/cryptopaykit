@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import TypewriterCode from './components/TypewriterCode'
 import PaymentFlowAnimation from './components/PaymentFlowAnimation'
-import { X402Checkout } from '@/components/x402/X402Checkout'
+import { PaymentOptions } from '@/components/stripe/PaymentOptions'
 
 const heroCodeLines = [
   'import { withX402 } from "x402-next"',
@@ -309,22 +309,17 @@ export default function LandingPage() {
             className="flex flex-col items-center gap-3 mt-8 sm:mt-10"
           >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-0">
-              <X402Checkout
-                endpoint="/api/kit"
-                productName="CryptoPayKit"
-                price="$49"
-                description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
-                onSuccess={() => router.push('/success')}
-                accentColor="#f59e0b"
-              >
-                <motion.span
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="inline-block w-full sm:w-auto px-8 py-3.5 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-lg transition-colors text-sm shadow-lg shadow-amber-500/20 text-center"
-                >
-                  Get the Full Kit -- $49 USDC
-                </motion.span>
-              </X402Checkout>
+              <div className="w-full sm:w-80">
+                <PaymentOptions
+                  productName="CryptoPayKit"
+                  price={49}
+                  description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
+                  x402Endpoint="/api/kit"
+                  successUrl="/success"
+                  onX402Success={() => router.push('/success')}
+                  accentColor="#f59e0b"
+                />
+              </div>
               <motion.a
                 href="/playground"
                 whileHover={{ scale: 1.05 }}
@@ -616,22 +611,17 @@ export default function LandingPage() {
                     <span className="text-green-400">+</span> Commercial license included
                   </li>
                 </ul>
-                <X402Checkout
-                  endpoint="/api/kit"
-                  productName="CryptoPayKit"
-                  price="$49"
-                  description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
-                  onSuccess={() => router.push('/success')}
-                  accentColor="#f59e0b"
-                >
-                  <motion.span
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="block mt-6 text-center px-6 py-3 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-lg transition-colors text-sm shadow-lg shadow-amber-500/20"
-                  >
-                    Get the Full Kit -- $49 USDC
-                  </motion.span>
-                </X402Checkout>
+                <div className="mt-6">
+                  <PaymentOptions
+                    productName="CryptoPayKit"
+                    price={49}
+                    description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
+                    x402Endpoint="/api/kit"
+                    successUrl="/success"
+                    onX402Success={() => router.push('/success')}
+                    accentColor="#f59e0b"
+                  />
+                </div>
                 <p className="text-[10px] text-zinc-400 mt-3 text-center">
                   15 templates &bull; 4 guides &bull; Commercial license &bull; Lifetime access
                 </p>
@@ -689,22 +679,17 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col items-center gap-4">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-0">
-                <X402Checkout
-                  endpoint="/api/kit"
-                  productName="CryptoPayKit"
-                  price="$49"
-                  description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
-                  onSuccess={() => router.push('/success')}
-                  accentColor="#f59e0b"
-                >
-                  <motion.span
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="inline-block w-full sm:w-auto px-8 py-3.5 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-lg transition-colors shadow-lg shadow-amber-500/20 text-center"
-                  >
-                    Get the Full Kit -- $49 USDC
-                  </motion.span>
-                </X402Checkout>
+                <div className="w-full sm:w-80">
+                  <PaymentOptions
+                    productName="CryptoPayKit"
+                    price={49}
+                    description="15 production-ready templates, 4 integration guides, live playground. Commercial license included."
+                    x402Endpoint="/api/kit"
+                    successUrl="/success"
+                    onX402Success={() => router.push('/success')}
+                    accentColor="#f59e0b"
+                  />
+                </div>
                 <motion.a
                   href="/playground"
                   whileHover={{ scale: 1.05 }}
