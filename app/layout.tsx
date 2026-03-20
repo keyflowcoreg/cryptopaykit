@@ -32,27 +32,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "CryptoPayKit",
-              description:
-                "The definitive developer toolkit for accepting crypto payments via x402 protocol. 15 code templates, 4 integration guides, and a live playground.",
-              url: "https://cryptopaykit.com",
-              applicationCategory: "DeveloperApplication",
-              operatingSystem: "Web",
-              offers: {
-                "@type": "Offer",
-                price: "49",
-                priceCurrency: "USD",
-                availability: "https://schema.org/InStock",
-              },
-            }),
-          }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "CryptoPayKit",
+          "description": "x402 crypto payment toolkit",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web",
+          "offers": {
+            "@type": "Offer",
+            "price": "49",
+            "priceCurrency": "USD"
+          }
+        }) }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
