@@ -9,6 +9,7 @@ import { PayNow } from '@/components/paynow'
 import EmailCapture from '@/components/EmailCapture'
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { SocialShare } from '@/components/SocialShare'
+import { EcosystemFooter } from '@/components/EcosystemFooter'
 
 const heroCodeLines = [
   'import { withX402 } from "x402-next"',
@@ -684,43 +685,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Ecosystem Cross-sell */}
-      <section className="border-t border-zinc-700 py-12 sm:py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-6xl mx-auto px-4 text-center"
-        >
-          <p className="text-sm text-zinc-400 uppercase tracking-wider mb-4">From the AI Business Factory</p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
-            <motion.a href="https://promptforge.vercel.app" target="_blank" rel="noopener" whileHover={{ scale: 1.05 }} className="p-3 rounded-lg border border-zinc-700 hover:border-amber-500/60 transition-colors text-left">
-              <p className="font-medium text-white text-sm">PromptForge</p>
-              <p className="text-xs text-zinc-400">200+ AI Prompts</p>
-            </motion.a>
-            <motion.a href="https://siteforge.vercel.app" target="_blank" rel="noopener" whileHover={{ scale: 1.05 }} className="p-3 rounded-lg border border-zinc-700 hover:border-amber-500/60 transition-colors text-left">
-              <p className="font-medium text-white text-sm">SiteForge</p>
-              <p className="text-xs text-zinc-400">AI Landing Pages in 60s</p>
-            </motion.a>
-            <motion.a href="https://aitoolsradar.vercel.app" target="_blank" rel="noopener" whileHover={{ scale: 1.05 }} className="p-3 rounded-lg border border-zinc-700 hover:border-amber-500/60 transition-colors text-left">
-              <p className="font-medium text-white text-sm">AIToolsRadar</p>
-              <p className="text-xs text-zinc-400">Compare 40+ AI Tools</p>
-            </motion.a>
-            <motion.a href="https://pageforge.vercel.app" target="_blank" rel="noopener" whileHover={{ scale: 1.05 }} className="p-3 rounded-lg border border-zinc-700 hover:border-amber-500/60 transition-colors text-left">
-              <p className="font-medium text-white text-sm">PageForge</p>
-              <p className="text-xs text-zinc-400">AI Page Generator</p>
-            </motion.a>
-            <motion.a href="https://agencysitegrader.vercel.app" target="_blank" rel="noopener" whileHover={{ scale: 1.05 }} className="p-3 rounded-lg border border-zinc-700 hover:border-amber-500/60 transition-colors text-left">
-              <p className="font-medium text-white text-sm">Agency Site Grader</p>
-              <p className="text-xs text-zinc-400">Grade Your Website</p>
-            </motion.a>
-            <motion.a href="https://pricingcalculator.vercel.app" target="_blank" rel="noopener" whileHover={{ scale: 1.05 }} className="p-3 rounded-lg border border-zinc-700 hover:border-amber-500/60 transition-colors text-left">
-              <p className="font-medium text-white text-sm">Pricing Calculator</p>
-              <p className="text-xs text-zinc-400">Freelance Pricing</p>
-            </motion.a>
-          </div>
-        </motion.div>
-      </section>
+      <EcosystemFooter currentProduct="CryptoPayKit" />
     </div>
   )
 }
