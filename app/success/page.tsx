@@ -1,234 +1,96 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const KIT_CONTENTS = [
-  { name: 'Next.js x402 Template', desc: 'Full app with paywall middleware', type: 'template' },
-  { name: 'Express.js Template', desc: 'REST API with payment gates', type: 'template' },
-  { name: 'Cloudflare Workers Template', desc: 'Edge-first x402 implementation', type: 'template' },
-  { name: 'Fastify Template', desc: 'High-performance Node.js setup', type: 'template' },
-  { name: 'Integration Guide', desc: 'Step-by-step setup for any framework', type: 'guide' },
-  { name: 'Pricing Strategy Guide', desc: 'How to price API calls and content', type: 'guide' },
-  { name: 'Testing Toolkit', desc: 'Mock payment receipts and test helpers', type: 'tool' },
-  { name: 'Deployment Checklist', desc: 'Production-ready config for Vercel, Fly, Railway', type: 'guide' },
-]
-
-const CROSS_SELL = [
-  { name: 'PromptForge', href: 'https://promptforge.vercel.app', desc: '200+ production AI prompts', price: '$19' },
-  { name: 'SiteForge', href: 'https://siteforge.vercel.app', desc: 'AI landing pages in seconds', price: '$9' },
-  { name: 'RulesForge', href: '#', desc: 'AI coding rules for your team', price: '$14' },
-  { name: 'OGForge', href: '#', desc: 'Social cards in one click', price: '$9' },
-]
+import { EcosystemFooter } from '@/components/EcosystemFooter'
 
 export default function SuccessPage() {
-  const [showCheck, setShowCheck] = useState(false)
-  const [showContent, setShowContent] = useState(false)
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setShowCheck(true), 300)
-    const t2 = setTimeout(() => setShowContent(true), 800)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [])
-
-  const handleDownload = async () => {
-    try {
-      const res = await fetch('/api/download')
-      if (!res.ok) throw new Error('Download failed')
-      const blob = await res.blob()
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = 'cryptopaykit-developer-kit.zip'
-      a.click()
-      URL.revokeObjectURL(url)
-    } catch {
-      alert('Download failed. Please try again.')
-    }
-  }
-
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e5e5e5] relative overflow-hidden">
-      <style>{`
-        @keyframes confetti-fall {
-          0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-          100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-        @keyframes confetti-fall-2 {
-          0% { transform: translateY(-100vh) rotate(0deg) scale(0.8); opacity: 1; }
-          100% { transform: translateY(100vh) rotate(-540deg) scale(0.3); opacity: 0; }
-        }
-        .confetti-piece {
-          position: fixed;
-          top: -20px;
-          z-index: 50;
-          pointer-events: none;
-        }
-        @keyframes check-draw {
-          0% { stroke-dashoffset: 50; }
-          100% { stroke-dashoffset: 0; }
-        }
-        @keyframes circle-fill {
-          0% { transform: scale(0); opacity: 0; }
-          50% { transform: scale(1.1); }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes fade-up {
-          0% { opacity: 0; transform: translateY(20px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-check-draw {
-          stroke-dasharray: 50;
-          stroke-dashoffset: 50;
-          animation: check-draw 0.5s ease-out 0.5s forwards;
-        }
-        .animate-circle-fill {
-          animation: circle-fill 0.5s ease-out forwards;
-        }
-        .animate-fade-up {
-          opacity: 0;
-          animation: fade-up 0.5s ease-out forwards;
-        }
-      `}</style>
+    <div className="min-h-screen bg-zinc-950">
+      <div className="max-w-2xl mx-auto px-6 py-24 text-center">
+        {/* Animated checkmark */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
+          className="mx-auto w-24 h-24 rounded-full bg-emerald-500/20 flex items-center justify-center mb-8"
+        >
+          <motion.svg
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </motion.svg>
+        </motion.div>
 
-      {/* Confetti particles */}
-      {showCheck && Array.from({ length: 40 }).map((_, i) => (
-        <div
-          key={i}
-          className="confetti-piece"
-          style={{
-            left: `${Math.random() * 100}%`,
-            width: `${6 + Math.random() * 8}px`,
-            height: `${6 + Math.random() * 8}px`,
-            backgroundColor: ['#F59E0B', '#FBBF24', '#D97706', '#FDE68A', '#8B5CF6', '#10B981', '#EC4899', '#38BDF8'][i % 8],
-            borderRadius: i % 3 === 0 ? '50%' : i % 3 === 1 ? '2px' : '0',
-            animation: `${i % 2 === 0 ? 'confetti-fall' : 'confetti-fall-2'} ${2 + Math.random() * 3}s ease-out ${Math.random() * 1.5}s forwards`,
-          }}
-        />
-      ))}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+          <h1 className="text-3xl font-bold text-white mb-4">Payment Verified!</h1>
+          <p className="text-lg text-zinc-400 mb-2">Thank you for purchasing CryptoPayKit Developer Kit.</p>
+          <p className="text-sm text-zinc-500 mb-8">Your access has been activated. Check your email for confirmation.</p>
+        </motion.div>
 
-      <div className="max-w-2xl mx-auto px-6 py-16">
-        {/* Checkmark */}
-        <div className="flex justify-center mb-8">
-          <div className={`w-24 h-24 rounded-full bg-emerald-500/10 flex items-center justify-center ${showCheck ? 'animate-circle-fill' : 'opacity-0'}`}>
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <circle cx="24" cy="24" r="22" stroke="#10B981" strokeWidth="3" opacity="0.3" />
-              <path
-                d="M14 24L21 31L34 18"
-                stroke="#10B981"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                className={showCheck ? 'animate-check-draw' : ''}
-              />
-            </svg>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="space-y-4">
+          {/* What you get */}
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 text-left">
+            <h3 className="text-sm font-medium text-zinc-400 uppercase tracking-wider mb-4">What&apos;s included</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3 text-sm text-zinc-300">
+                <svg className="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                4 full-stack x402 templates (Next.js, Express, Cloudflare Workers, Fastify)
+              </li>
+              <li className="flex items-center gap-3 text-sm text-zinc-300">
+                <svg className="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Integration guide with step-by-step setup
+              </li>
+              <li className="flex items-center gap-3 text-sm text-zinc-300">
+                <svg className="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Pricing strategy guide for API monetization
+              </li>
+              <li className="flex items-center gap-3 text-sm text-zinc-300">
+                <svg className="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Testing toolkit with mock payment receipts
+              </li>
+              <li className="flex items-center gap-3 text-sm text-zinc-300">
+                <svg className="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Production deployment checklist for Vercel, Fly, and Railway
+              </li>
+            </ul>
           </div>
-        </div>
 
-        {/* Title */}
-        {showContent && (
-          <div className="text-center mb-10 animate-fade-up">
-            <h1 className="text-3xl font-bold mb-3">Payment Confirmed!</h1>
-            <p className="text-[#a1a1aa] text-lg">Your Developer Kit is ready</p>
+          {/* Next steps */}
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 text-left">
+            <h3 className="text-sm font-medium text-zinc-400 uppercase tracking-wider mb-4">Next steps</h3>
+            <ol className="space-y-2 text-sm text-zinc-300 list-decimal list-inside">
+              <li>Download the Developer Kit ZIP</li>
+              <li>Choose the template that fits your stack</li>
+              <li>Follow the integration guide to wire up x402 payments</li>
+              <li>Test with the mock payment toolkit before going live</li>
+            </ol>
           </div>
-        )}
 
-        {/* Download button */}
-        {showContent && (
-          <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
-            <button
-              onClick={handleDownload}
-              className="w-full bg-amber-500 hover:bg-amber-600 text-black py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center gap-3 mb-8"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Download ZIP
-            </button>
-          </div>
-        )}
-
-        {/* Kit contents */}
-        {showContent && (
-          <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <h2 className="text-lg font-semibold mb-4 text-amber-400">What&apos;s in the kit</h2>
-            <div className="space-y-2 mb-10">
-              {KIT_CONTENTS.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex items-center gap-3 bg-[#111114] border border-[#262630] rounded-lg px-4 py-3 hover:border-amber-500/30 transition-colors"
-                >
-                  <div className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 ${
-                    item.type === 'template' ? 'bg-amber-500/10 text-amber-400' :
-                    item.type === 'guide' ? 'bg-blue-500/10 text-blue-400' :
-                    'bg-emerald-500/10 text-emerald-400'
-                  }`}>
-                    {item.type === 'template' ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
-                    ) : item.type === 'guide' ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                    ) : (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" /></svg>
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium">{item.name}</p>
-                    <p className="text-xs text-[#a1a1aa]">{item.desc}</p>
-                  </div>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full shrink-0 ${
-                    item.type === 'template' ? 'bg-amber-500/10 text-amber-400' :
-                    item.type === 'guide' ? 'bg-blue-500/10 text-blue-400' :
-                    'bg-emerald-500/10 text-emerald-400'
-                  }`}>
-                    {item.type}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* CTA */}
-        {showContent && (
-          <div className="animate-fade-up mb-16" style={{ animationDelay: '0.3s' }}>
-            <Link
-              href="/playground"
-              className="block text-center bg-[#111114] border border-[#262630] hover:border-amber-500/40 text-amber-400 py-4 rounded-xl font-semibold transition-colors"
-            >
-              Start building &rarr;
+          <div className="flex gap-3 justify-center pt-4">
+            <Link href="/" className="rounded-xl bg-white text-black px-6 py-3 font-semibold text-sm hover:bg-zinc-200 transition-colors">
+              Back to CryptoPayKit
+            </Link>
+            <Link href="/contact" className="rounded-xl border border-zinc-700 text-zinc-300 px-6 py-3 font-semibold text-sm hover:border-zinc-500 transition-colors">
+              Need help?
             </Link>
           </div>
-        )}
+        </motion.div>
 
-        {/* Cross-sell */}
-        {showContent && (
-          <div className="animate-fade-up" style={{ animationDelay: '0.4s' }}>
-            <div className="border-t border-[#262630] pt-10">
-              <p className="text-sm text-[#a1a1aa] text-center mb-6">More tools from the Forge ecosystem</p>
-              <div className="grid grid-cols-2 gap-3">
-                {CROSS_SELL.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#111114] border border-[#262630] rounded-lg p-4 hover:border-amber-500/30 transition-colors group"
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-sm group-hover:text-amber-400 transition-colors">{item.name}</span>
-                      <span className="text-xs text-amber-500">{item.price}</span>
-                    </div>
-                    <p className="text-xs text-[#a1a1aa]">{item.desc}</p>
-                  </a>
-                ))}
-              </div>
-            </div>
+        {/* Social share */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-12">
+          <p className="text-sm text-zinc-500 mb-3">Share your purchase</p>
+          <div className="flex justify-center gap-3">
+            <a href="https://twitter.com/intent/tweet?text=Just%20got%20CryptoPayKit!%20Complete%20x402%20payment%20integration%20toolkit.&url=https://cryptopaykit.vercel.app" target="_blank" rel="noopener" className="rounded-lg border border-zinc-700 px-4 py-2 text-xs text-zinc-400 hover:text-white hover:border-zinc-500 transition-colors">Share on X</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://cryptopaykit.vercel.app" target="_blank" rel="noopener" className="rounded-lg border border-zinc-700 px-4 py-2 text-xs text-zinc-400 hover:text-white hover:border-zinc-500 transition-colors">Share on LinkedIn</a>
           </div>
-        )}
+        </motion.div>
       </div>
+
+      <EcosystemFooter currentProduct="CryptoPayKit" />
     </div>
   )
 }
