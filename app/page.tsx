@@ -14,6 +14,8 @@ import { ExitIntent } from '@/components/ExitIntent'
 import { TrustBar } from '@/components/TrustBar'
 import { SplitText } from '@/components/SplitText'
 import { MagneticButton } from '@/components/MagneticButton'
+import { CountdownTimer } from '@/components/CountdownTimer'
+import { TestimonialCarousel } from '@/components/TestimonialCarousel'
 
 const heroCodeLines = [
   'import { withX402 } from "x402-next"',
@@ -489,6 +491,13 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* -- Countdown Timer -- */}
+      <section className="py-8 border-t border-zinc-700">
+        <div className="max-w-4xl mx-auto px-4">
+          <CountdownTimer targetDate="2026-03-27T23:59:59" label="Launch pricing ends in" />
+        </div>
+      </section>
+
       {/* -- Pricing -- */}
       <section id="pricing" className="py-16 sm:py-20 border-t border-zinc-700">
         <div className="max-w-4xl mx-auto px-4">
@@ -692,6 +701,20 @@ export default function LandingPage() {
             buttonText="Subscribe Free"
             accent="amber"
           />
+        </div>
+      </section>
+
+      {/* -- Testimonials -- */}
+      <section className="py-16 sm:py-20 border-t border-zinc-700">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">What developers are saying</h2>
+          </div>
+          <TestimonialCarousel testimonials={[
+            { name: "Alex Turner", role: "Full-Stack Developer", company: "Basecamp", text: "Integrated x402 payments in under 10 minutes using the Next.js template. The playground made it click instantly.", rating: 5 },
+            { name: "Priya Sharma", role: "Web3 Founder", company: "PayLayer", text: "We switched from Stripe to x402 for our API monetization. CryptoPayKit templates saved us weeks of development.", rating: 5 },
+            { name: "Chris Novak", role: "Indie Developer", company: "Independent", text: "The Express and Fastify templates are production-ready out of the box. Best $49 I've spent on dev tools.", rating: 4 },
+          ]} />
         </div>
       </section>
 
