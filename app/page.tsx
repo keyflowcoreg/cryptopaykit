@@ -10,6 +10,8 @@ import EmailCapture from '@/components/EmailCapture'
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { SocialShare } from '@/components/SocialShare'
 import { EcosystemFooter } from '@/components/EcosystemFooter'
+import { ExitIntent } from '@/components/ExitIntent'
+import { TrustBar } from '@/components/TrustBar'
 
 const heroCodeLines = [
   'import { withX402 } from "x402-next"',
@@ -322,6 +324,16 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* TrustBar */}
+      <div className="max-w-6xl mx-auto px-4">
+        <TrustBar items={[
+          { label: 'Templates', value: 15 },
+          { label: 'Frameworks', value: 5 },
+          { label: 'Platform Fee', value: 0, prefix: '$' },
+          { label: 'Settlement', value: 2, suffix: 's' },
+        ]} />
+      </div>
 
       {/* -- Code Preview -- */}
       <section className="py-12 sm:py-16 border-t border-zinc-700">
@@ -686,6 +698,12 @@ export default function LandingPage() {
       </section>
 
       <EcosystemFooter currentProduct="CryptoPayKit" />
+
+      <ExitIntent
+        heading="Free x402 starter template"
+        description="Get our most popular template free. Just enter your email."
+        ctaText="Send me the template"
+      />
     </div>
   )
 }
