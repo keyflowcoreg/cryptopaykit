@@ -47,23 +47,23 @@ function TemplateCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className={`relative bg-surface-900 border rounded-xl p-5 transition-colors ${
+      className={`relative bg-zinc-900 border rounded-xl p-4 sm:p-5 transition-colors ${
         template.isFree
-          ? 'border-surface-700 hover:border-amber-500/30'
-          : 'border-surface-700 hover:border-surface-600'
+          ? 'border-zinc-700 hover:border-amber-500/60'
+          : 'border-zinc-700 hover:border-surface-600'
       }`}
     >
       {/* Locked overlay */}
       {!template.isFree && (
-        <div className="absolute inset-0 bg-surface-950/60 backdrop-blur-[1px] rounded-xl z-10 flex flex-col items-center justify-center">
-          <div className="text-neutral-500 text-sm mb-2 font-mono">
+        <div className="absolute inset-0 bg-zinc-950/60 backdrop-blur-[1px] rounded-xl z-10 flex flex-col items-center justify-center">
+          <div className="text-zinc-400 text-sm mb-2 font-mono">
             Locked
           </div>
           <a
-            href="/api/kit"
+            href="/#pricing"
             className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-black text-xs font-semibold rounded-lg transition-colors"
           >
-            Unlock all 15 templates for $49
+            Unlock all 15 -- $49
           </a>
         </div>
       )}
@@ -71,10 +71,10 @@ function TemplateCard({
       {/* Framework badge */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <span className="w-7 h-7 rounded-md bg-surface-800 border border-surface-700 flex items-center justify-center text-xs font-bold text-amber-500">
+          <span className="w-7 h-7 rounded-md bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xs font-bold text-amber-500">
             {FRAMEWORK_META[template.framework]?.icon || '?'}
           </span>
-          <span className="text-xs text-neutral-500">
+          <span className="text-xs text-zinc-400">
             {FRAMEWORK_META[template.framework]?.label || template.framework}
           </span>
         </div>
@@ -89,7 +89,7 @@ function TemplateCard({
       <h3 className="text-sm font-semibold text-white mb-2">
         {template.title}
       </h3>
-      <p className="text-xs text-neutral-500 leading-relaxed mb-4 line-clamp-2">
+      <p className="text-xs text-zinc-400 leading-relaxed mb-4 line-clamp-2">
         {template.description}
       </p>
 
@@ -97,7 +97,7 @@ function TemplateCard({
       {template.isFree && (
         <button
           onClick={() => onPreview(template)}
-          className="w-full py-2 border border-surface-600 hover:border-amber-500/50 text-neutral-400 hover:text-amber-500 text-xs rounded-lg transition-colors font-mono"
+          className="w-full py-2 border border-surface-600 hover:border-amber-500 text-zinc-400 hover:text-amber-500 text-xs rounded-lg transition-colors font-mono"
         >
           {'>'} Preview Code
         </button>
@@ -117,31 +117,31 @@ export default function TemplatesPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 pt-8 pb-20">
+      <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8 pb-16 sm:pb-20">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <div className="text-amber-500 font-mono text-sm mb-2">
             {'>'} templates
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">
+          <h1 className="text-xl sm:text-2xl font-bold text-white mb-2">
             15 Production-Ready Templates
           </h1>
-          <p className="text-neutral-400 text-sm">
+          <p className="text-zinc-400 text-sm">
             Copy-paste x402 payment integration for every major framework.
             3 free to preview, 12 more with the full kit.
           </p>
         </div>
 
         {/* Filters */}
-        <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2">
+        <div className="flex items-center gap-2 mb-6 sm:mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           {Object.entries(FRAMEWORK_META).map(([key, meta]) => (
             <button
               key={key}
               onClick={() => setFilter(key)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-xs font-mono transition-colors whitespace-nowrap shrink-0 ${
                 filter === key
                   ? 'bg-amber-500/10 text-amber-500 border border-amber-500/30'
-                  : 'bg-surface-800 text-neutral-400 border border-surface-700 hover:border-surface-600'
+                  : 'bg-zinc-800 text-zinc-400 border border-zinc-700 hover:border-surface-600'
               }`}
             >
               <span>{meta.icon}</span>
@@ -150,7 +150,7 @@ export default function TemplatesPage() {
                 className={`px-1.5 py-0.5 rounded text-[10px] ${
                   filter === key
                     ? 'bg-amber-500/20'
-                    : 'bg-surface-700'
+                    : 'bg-zinc-700'
                 }`}
               >
                 {meta.count}
@@ -160,7 +160,7 @@ export default function TemplatesPage() {
         </div>
 
         {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((template, i) => (
               <TemplateCard
@@ -174,18 +174,18 @@ export default function TemplatesPage() {
         </div>
 
         {/* Stats */}
-        <div className="mt-12 text-center">
-          <p className="text-neutral-500 text-sm">
+        <div className="mt-10 sm:mt-12 text-center">
+          <p className="text-zinc-400 text-sm">
             <span className="text-amber-500 font-bold">{ALL_TEMPLATES.filter((t) => t.isFree).length}</span> free templates available.{' '}
-            <span className="text-neutral-400">
+            <span className="text-zinc-400">
               Get all {ALL_TEMPLATES.length} with the full kit.
             </span>
           </p>
           <a
-            href="/api/kit"
+            href="/#pricing"
             className="inline-block mt-4 px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-semibold rounded-lg transition-colors text-sm"
           >
-            Unlock Everything — $49
+            Unlock Everything -- $49
           </a>
         </div>
       </div>
@@ -197,7 +197,7 @@ export default function TemplatesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
           >
             {/* Backdrop */}
             <motion.div
@@ -213,21 +213,21 @@ export default function TemplatesPage() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-3xl max-h-[85vh] flex flex-col bg-surface-900 border border-surface-700 rounded-xl overflow-hidden z-10"
+              className="relative w-full sm:max-w-3xl max-h-[90vh] sm:max-h-[85vh] flex flex-col bg-zinc-900 border border-zinc-700 rounded-t-xl sm:rounded-xl overflow-hidden z-10"
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between px-5 py-3 border-b border-surface-700 bg-surface-800/50 shrink-0">
-                <div>
-                  <h3 className="text-sm font-semibold text-white">
+              <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-zinc-700 bg-zinc-800/50 shrink-0">
+                <div className="min-w-0 mr-4">
+                  <h3 className="text-sm font-semibold text-white truncate">
                     {preview.title}
                   </h3>
-                  <p className="text-xs text-neutral-500 mt-0.5">
+                  <p className="text-xs text-zinc-400 mt-0.5 truncate">
                     {preview.description}
                   </p>
                 </div>
                 <button
                   onClick={() => setPreview(null)}
-                  className="text-neutral-500 hover:text-white transition-colors text-lg px-2"
+                  className="text-zinc-400 hover:text-white transition-colors text-lg px-2 shrink-0"
                 >
                   x
                 </button>

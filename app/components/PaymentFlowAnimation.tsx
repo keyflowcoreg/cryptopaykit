@@ -24,13 +24,13 @@ const STEPS = [
     id: 3,
     label: 'Send 1.00 USDC',
     from: 'Client',
-    to: 'Base Network',
+    to: 'Base',
     color: '#22c55e',
     detail: 'USDC transfer on Base (confirms in ~2s)',
   },
   {
     id: 4,
-    label: 'GET + X-PAYMENT header',
+    label: 'GET + X-PAYMENT',
     from: 'Client',
     to: 'Server',
     color: '#818cf8',
@@ -73,26 +73,26 @@ export default function PaymentFlowAnimation() {
 
   return (
     <div className="w-full">
-      {/* Actors */}
-      <div className="flex justify-between mb-8 px-4">
-        {['Client', 'Server', 'Base Network', 'Facilitator'].map((actor) => (
+      {/* Actors - hidden on very small screens, simplified */}
+      <div className="hidden sm:flex justify-between mb-8 px-2 sm:px-4">
+        {['Client', 'Server', 'Base', 'Facilitator'].map((actor) => (
           <div key={actor} className="text-center">
-            <div className="w-12 h-12 mx-auto rounded-lg bg-surface-800 border border-surface-700 flex items-center justify-center text-lg mb-2">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center text-base sm:text-lg mb-2">
               {actor === 'Client'
                 ? '\u{1F4BB}'
                 : actor === 'Server'
                   ? '\u{1F5A5}\u{FE0F}'
-                  : actor === 'Base Network'
+                  : actor === 'Base'
                     ? '\u{26D3}\u{FE0F}'
                     : '\u{1F50D}'}
             </div>
-            <span className="text-xs text-neutral-400">{actor}</span>
+            <span className="text-[10px] sm:text-xs text-zinc-400">{actor}</span>
           </div>
         ))}
       </div>
 
       {/* Steps */}
-      <div className="space-y-3 mb-6">
+      <div className="space-y-2 sm:space-y-3 mb-6">
         <AnimatePresence>
           {STEPS.map((step, i) => (
             <motion.div
@@ -103,11 +103,11 @@ export default function PaymentFlowAnimation() {
                 x: i <= activeStep ? 0 : -20,
               }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="flex items-center gap-3"
+              className="flex items-center gap-2 sm:gap-3"
             >
               {/* Step number */}
               <div
-                className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-colors"
+                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold shrink-0 transition-colors"
                 style={{
                   backgroundColor:
                     i <= activeStep ? step.color : 'transparent',
@@ -120,8 +120,8 @@ export default function PaymentFlowAnimation() {
 
               {/* Arrow and labels */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-neutral-500 text-xs whitespace-nowrap">
+                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                  <span className="text-zinc-400 text-[10px] sm:text-xs whitespace-nowrap">
                     {step.from}
                   </span>
                   <motion.div
@@ -129,11 +129,12 @@ export default function PaymentFlowAnimation() {
                       scaleX: i <= activeStep ? 1 : 0.5,
                       opacity: i <= activeStep ? 1 : 0.3,
                     }}
-                    className="flex-1 h-px origin-left"
+                    className="flex-1 h-px origin-left hidden sm:block"
                     style={{ backgroundColor: step.color }}
                   />
+                  <span className="text-zinc-400 sm:hidden">{'>'}</span>
                   <span
-                    className="font-medium text-xs whitespace-nowrap"
+                    className="font-medium text-[10px] sm:text-xs whitespace-nowrap truncate"
                     style={{ color: i <= activeStep ? step.color : '#555' }}
                   >
                     {step.label}
@@ -143,10 +144,11 @@ export default function PaymentFlowAnimation() {
                       scaleX: i <= activeStep ? 1 : 0.5,
                       opacity: i <= activeStep ? 1 : 0.3,
                     }}
-                    className="flex-1 h-px origin-right"
+                    className="flex-1 h-px origin-right hidden sm:block"
                     style={{ backgroundColor: step.color }}
                   />
-                  <span className="text-neutral-500 text-xs whitespace-nowrap">
+                  <span className="text-zinc-400 sm:hidden">{'>'}</span>
+                  <span className="text-zinc-400 text-[10px] sm:text-xs whitespace-nowrap">
                     {step.to}
                   </span>
                 </div>
@@ -154,7 +156,7 @@ export default function PaymentFlowAnimation() {
                   <motion.p
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
-                    className="text-xs text-neutral-500 mt-1 ml-0 font-mono"
+                    className="text-[10px] sm:text-xs text-zinc-400 mt-1 ml-0 font-mono truncate sm:whitespace-normal"
                   >
                     {step.detail}
                   </motion.p>

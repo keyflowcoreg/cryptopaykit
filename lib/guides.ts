@@ -35,23 +35,21 @@ The entire flow happens in seconds. No redirect. No checkout page. No OAuth danc
 ## Quick Setup (Next.js)
 
 \`\`\`bash
-npm install x402-next
+npm install x402-next @coinbase/x402
 \`\`\`
 
 \`\`\`typescript
-import { paymentMiddleware } from 'x402-next'
+import { withX402 } from 'x402-next'
 
-export const GET = paymentMiddleware(
-  async () => {
-    return Response.json({ data: 'Premium content here' })
-  },
-  {
-    price: '$1.00',
-    network: 'base',
-    payTo: '0xYourWalletAddress',
-    description: 'Premium API Access',
-  }
-)
+const handler = async () => {
+  return Response.json({ data: 'Premium content here' })
+}
+
+export const GET = withX402(handler, '0xYourWalletAddress', {
+  price: '$1.00',
+  network: 'base',
+  description: 'Premium API Access',
+})
 \`\`\`
 
 That's it. Your endpoint now requires payment.

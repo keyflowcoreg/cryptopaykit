@@ -15,10 +15,10 @@ const KIT_CONTENTS = [
 ]
 
 const CROSS_SELL = [
-  { name: 'PromptForge', href: 'https://promptforge.com', desc: '200+ production AI prompts', price: '$19' },
-  { name: 'SiteForge', href: 'https://siteforge.com', desc: 'AI landing pages in seconds', price: '$9' },
-  { name: 'RulesForge', href: 'https://rulesforge.com', desc: 'AI coding rules for your team', price: '$14' },
-  { name: 'OGForge', href: 'https://ogforge.com', desc: 'Social cards in one click', price: '$9' },
+  { name: 'PromptForge', href: 'https://promptforge.vercel.app', desc: '200+ production AI prompts', price: '$19' },
+  { name: 'SiteForge', href: 'https://siteforge.vercel.app', desc: 'AI landing pages in seconds', price: '$9' },
+  { name: 'RulesForge', href: '#', desc: 'AI coding rules for your team', price: '$14' },
+  { name: 'OGForge', href: '#', desc: 'Social cards in one click', price: '$9' },
 ]
 
 export default function SuccessPage() {
@@ -130,7 +130,7 @@ export default function SuccessPage() {
         {showContent && (
           <div className="text-center mb-10 animate-fade-up">
             <h1 className="text-3xl font-bold mb-3">Payment Confirmed!</h1>
-            <p className="text-[#71717A] text-lg">Your Developer Kit is ready</p>
+            <p className="text-[#a1a1aa] text-lg">Your Developer Kit is ready</p>
           </div>
         )}
 
@@ -176,7 +176,7 @@ export default function SuccessPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium">{item.name}</p>
-                    <p className="text-xs text-[#71717A]">{item.desc}</p>
+                    <p className="text-xs text-[#a1a1aa]">{item.desc}</p>
                   </div>
                   <span className={`text-[10px] px-2 py-0.5 rounded-full shrink-0 ${
                     item.type === 'template' ? 'bg-amber-500/10 text-amber-400' :
@@ -207,7 +207,7 @@ export default function SuccessPage() {
         {showContent && (
           <div className="animate-fade-up" style={{ animationDelay: '0.4s' }}>
             <div className="border-t border-[#262630] pt-10">
-              <p className="text-sm text-[#71717A] text-center mb-6">More tools from the Forge ecosystem</p>
+              <p className="text-sm text-[#a1a1aa] text-center mb-6">More tools from the Forge ecosystem</p>
               <div className="grid grid-cols-2 gap-3">
                 {CROSS_SELL.map((item) => (
                   <a
@@ -221,7 +221,7 @@ export default function SuccessPage() {
                       <span className="font-semibold text-sm group-hover:text-amber-400 transition-colors">{item.name}</span>
                       <span className="text-xs text-amber-500">{item.price}</span>
                     </div>
-                    <p className="text-xs text-[#71717A]">{item.desc}</p>
+                    <p className="text-xs text-[#a1a1aa]">{item.desc}</p>
                   </a>
                 ))}
               </div>

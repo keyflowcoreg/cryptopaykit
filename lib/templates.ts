@@ -15,7 +15,7 @@ export const ALL_TEMPLATES: Template[] = [
     title: 'Basic API Route with x402',
     description: 'The simplest way to add crypto payments to a Next.js API route. One import, one wrapper, done.',
     isFree: true,
-    code: `import { paymentMiddleware } from 'x402-next'
+    code: `import { withX402 } from 'x402-next'
 
 // Define your handler
 async function handler() {
@@ -36,10 +36,9 @@ async function handler() {
 }
 
 // Wrap with x402 payment gate
-export const GET = paymentMiddleware(handler, {
+export const GET = withX402(handler, '0xYourWalletAddress', {
   price: '$1.00',
   network: 'base',
-  payTo: '0xYourWalletAddress',
   description: 'Premium Market Report Access',
 })`,
   },
@@ -145,7 +144,7 @@ export const config = {
     title: 'Subscription with Session Management',
     description: 'Charge once, grant time-limited access using encrypted session tokens. Perfect for daily/weekly access passes.',
     isFree: false,
-    code: `import { paymentMiddleware } from 'x402-next'
+    code: `import { withX402 } from 'x402-next'
 import { SignJWT, jwtVerify } from 'jose'
 
 const JWT_SECRET = new TextEncoder().encode(
@@ -187,10 +186,9 @@ const subscribeHandler = async (request: Request) => {
   })
 }
 
-export const POST = paymentMiddleware(subscribeHandler, {
+export const POST = withX402(subscribeHandler, '0xYourWalletAddress', {
   price: '$5.00',
   network: 'base',
-  payTo: '0xYourWalletAddress',
   description: '24-Hour Premium Access Pass',
 })
 
@@ -328,7 +326,7 @@ async function revokeAccess(event: PaymentEvent) {
     description: 'Complete checkout flow with cart management, order creation, x402 payment, and order confirmation. Ready to customize.',
     isFree: false,
     code: `// app/api/checkout/route.ts
-import { paymentMiddleware } from 'x402-next'
+import { withX402 } from 'x402-next'
 
 interface CartItem {
   id: string
@@ -435,10 +433,9 @@ const payHandler = async (request: Request) => {
 
 // Dynamic pricing based on order total
 // Note: In production, fetch the order and set price dynamically
-export const GET_PAY = paymentMiddleware(payHandler, {
+export const GET_PAY = withX402(payHandler, '0xYourWalletAddress', {
   price: '$10.00',
   network: 'base',
-  payTo: '0xYourWalletAddress',
   description: 'E-Commerce Order Payment',
 })`,
   },

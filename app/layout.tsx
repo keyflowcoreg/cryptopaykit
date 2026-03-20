@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@/components/Analytics'
+import MobileNav from './components/MobileNav'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -60,35 +61,38 @@ export default function RootLayout({
       </head>
       <body className="antialiased min-h-screen">
         <Analytics product="cryptopaykit" />
-        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-surface-800 bg-surface-950/80 backdrop-blur-xl">
+        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-700 bg-zinc-950/80 backdrop-blur-xl">
           <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
             <a href="/" className="flex items-center gap-2">
               <span className="text-amber-500 font-bold text-lg">&gt;_</span>
               <span className="font-bold text-white">CryptoPayKit</span>
             </a>
-            <div className="flex items-center gap-6 text-sm">
-              <a href="/playground" className="text-neutral-400 hover:text-amber-500 transition-colors">
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-6 text-sm">
+              <a href="/playground" className="text-zinc-400 hover:text-amber-500 transition-colors">
                 Playground
               </a>
-              <a href="/templates" className="text-neutral-400 hover:text-amber-500 transition-colors">
+              <a href="/templates" className="text-zinc-400 hover:text-amber-500 transition-colors">
                 Templates
               </a>
-              <a href="/api/kit" className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-4 py-1.5 rounded-md transition-colors">
-                Buy Kit — $49
+              <a href="/#pricing" className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-4 py-1.5 rounded-md transition-colors">
+                Buy Kit -- $49
               </a>
             </div>
+            {/* Mobile nav */}
+            <MobileNav />
           </div>
         </nav>
         <main className="pt-14">
           {children}
         </main>
-        <footer className="border-t border-surface-800 py-12 mt-20">
-          <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-500">
+        <footer className="border-t border-zinc-700 py-12 mt-20">
+          <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-400">
             <div className="flex items-center gap-2">
               <span className="text-amber-500">&gt;_</span>
               <span>CryptoPayKit</span>
             </div>
-            <p>Open source spirit, built by AI agents. No middlemen. No platform fees.</p>
+            <p className="text-center">Open source spirit, built by AI agents. No middlemen. No platform fees.</p>
             <div className="flex gap-4">
               <a href="/playground" className="hover:text-amber-500 transition-colors">Playground</a>
               <a href="/templates" className="hover:text-amber-500 transition-colors">Templates</a>

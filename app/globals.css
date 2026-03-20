@@ -9,15 +9,15 @@
   --color-surface-hover: #1A1A1F;
   --color-border: #262630;
   --color-text: #E4E4E7;
-  --color-text-muted: #71717A;
+  --color-text-muted: #a1a1aa;
   --color-amber-400: #FBBF24;
   --color-amber-500: #F59E0B;
   --color-amber-600: #D97706;
-  --color-surface-950: #0a0a0a;
-  --color-surface-900: #111111;
-  --color-surface-800: #1a1a1a;
-  --color-surface-700: #2a2a2a;
-  --color-surface-600: #3a3a3a;
+  --color-surface-950: #0a0a0f;
+  --color-surface-900: #18181b;
+  --color-surface-800: #27272a;
+  --color-surface-700: #3f3f46;
+  --color-surface-600: #52525b;
   --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 }
 
@@ -61,7 +61,7 @@ body {
 }
 
 .code-line-number {
-  color: #555;
+  color: #777;
   user-select: none;
   min-width: 2.5rem;
   text-align: right;
@@ -86,7 +86,7 @@ body {
 
 /* Glow effect */
 .glow-amber {
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.25), 0 0 60px rgba(245, 158, 11, 0.1);
 }
 
 /* Typewriter cursor */
@@ -96,4 +96,23 @@ body {
 }
 .cursor-blink {
   animation: blink 1s infinite;
+}
+
+/* Mobile-first responsive overrides */
+@media (max-width: 640px) {
+  .code-block pre {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .code-block {
+    border-radius: 6px;
+  }
+
+  /* Ensure code blocks scroll horizontally, never break layout */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }

@@ -62,13 +62,13 @@ export default function TypewriterCode({
 
   return (
     <div className="code-block">
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-surface-700 bg-surface-800/50">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-zinc-700 bg-zinc-800/50">
         <div className="flex gap-1.5">
           <div className="w-3 h-3 rounded-full bg-red-500/80" />
           <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
           <div className="w-3 h-3 rounded-full bg-green-500/80" />
         </div>
-        <span className="text-xs text-neutral-500 ml-2">route.ts</span>
+        <span className="text-xs text-zinc-400 ml-2">route.ts</span>
       </div>
       <div className="p-4 text-sm leading-relaxed font-mono min-h-[200px]">
         <AnimatePresence>
