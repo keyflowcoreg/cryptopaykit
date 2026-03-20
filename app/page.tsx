@@ -12,6 +12,8 @@ import { SocialShare } from '@/components/SocialShare'
 import { EcosystemFooter } from '@/components/EcosystemFooter'
 import { ExitIntent } from '@/components/ExitIntent'
 import { TrustBar } from '@/components/TrustBar'
+import { SplitText } from '@/components/SplitText'
+import { MagneticButton } from '@/components/MagneticButton'
 
 const heroCodeLines = [
   'import { withX402 } from "x402-next"',
@@ -213,11 +215,9 @@ export default function LandingPage() {
               x402 protocol -- HTTP 402 meets USDC on Base
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-              You spent weeks
-              <br />
-              <span className="text-zinc-400 line-through decoration-red-500/40">integrating Stripe.</span>
-              <br />
-              <span className="text-amber-500">Accept crypto in 5 min.</span>
+              <SplitText text="You spent weeks" className="justify-center" delay={0.1} />
+              <SplitText text="integrating Stripe." className="justify-center text-zinc-400 line-through decoration-red-500/40" delay={0.3} />
+              <SplitText text="Accept crypto in 5 min." className="justify-center text-amber-500" delay={0.5} />
             </h1>
             <p className="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed px-2">
               One middleware. One line. USDC hits your wallet in 2 seconds.
@@ -257,14 +257,12 @@ export default function LandingPage() {
                   accentColor="#f59e0b"
                 />
               </div>
-              <motion.a
-                href="/playground"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className="w-full sm:w-auto px-6 py-3.5 border border-zinc-600 hover:border-amber-500 text-zinc-300 hover:text-amber-500 rounded-lg transition-colors text-sm text-center"
+              <MagneticButton
+                onClick={() => window.location.href = '/playground'}
+                className="w-full sm:w-auto px-6 py-3.5 border border-zinc-600 hover:border-amber-500 text-zinc-300 hover:text-amber-500 rounded-lg transition-colors text-sm text-center cursor-pointer"
               >
                 Try Playground Free
-              </motion.a>
+              </MagneticButton>
             </div>
             <span className="text-xs text-zinc-400">
               15 templates &bull; 4 guides &bull; Commercial license &bull; Lifetime access
