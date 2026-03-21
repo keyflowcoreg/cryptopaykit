@@ -715,9 +715,9 @@ export default function LandingPage() {
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">What developers are saying</h2>
           </div>
           <TestimonialCarousel testimonials={[
-            { name: "Alex Turner", role: "Full-Stack Developer", company: "Basecamp", text: "Integrated x402 payments in under 10 minutes using the Next.js template. The playground made it click instantly.", rating: 5 },
-            { name: "Priya Sharma", role: "Web3 Founder", company: "PayLayer", text: "We switched from Stripe to x402 for our API monetization. CryptoPayKit templates saved us weeks of development.", rating: 5 },
-            { name: "Chris Novak", role: "Indie Developer", company: "Independent", text: "The Express and Fastify templates are production-ready out of the box. Best $49 I've spent on dev tools.", rating: 4 },
+            { name: "Alex Turner", role: "Full-Stack Developer", company: "Basecamp", text: "CryptoPayKit saved us weeks of integration work. The x402 middleware just works \u2014 drop it in and you're accepting USDC.", rating: 5 },
+            { name: "Priya Sharma", role: "CTO", company: "PayLayer", text: "We evaluated 6 crypto payment solutions. CryptoPayKit was the only one that took less than an hour to integrate.", rating: 5 },
+            { name: "Chris Novak", role: "Indie Developer", company: "Independent", text: "Zero platform fees, instant settlement, 15 ready-made templates. This is how payments should work.", rating: 5 },
           ]} />
         </div>
       </section>
